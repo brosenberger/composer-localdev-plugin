@@ -44,7 +44,7 @@ class ComposerLocaldevPlugin implements PluginInterface {
 		$this->installer->setInstallManager($composer->getInstallationManager());
 // 		$composer->getInstallationManager()->addInstaller($this->installer);
 
-		$this->installManager = new InstallationManager();
+		$this->installManager = new InstallationManager($composer->getLoop(), $io);
 		$this->installManager->addInstaller($this->installer);
 		$composer->setInstallationManager($this->installManager);
 
@@ -104,7 +104,7 @@ class ComposerLocaldevPlugin implements PluginInterface {
 	public static function preDependencySolving(InstallerEvent $event) {
 		// add repo for resolving dependencies - hum, will it work?
 		$that = self::$instance;
-		$event->getPool()->addRepository($that->repo);
+        $event->getComposer()->getRepositoryManager()->addRepository($that->repo);
 	}
 
 	public static function preInstall(Event $event) {
