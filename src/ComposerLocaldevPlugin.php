@@ -159,4 +159,14 @@ class ComposerLocaldevPlugin implements PluginInterface {
 		$this->installer->setInstallManager($manager);
 		$this->composer->setInstallationManager($this->installManager);
 	}
+
+    public function deactivate(Composer $composer, IOInterface $io)
+    {
+        // TODO: Implement deactivate() method.
+    }
+
+    public function uninstall(Composer $composer, IOInterface $io)
+    {
+        // TODO: Implement uninstall() method.
+    }
 }

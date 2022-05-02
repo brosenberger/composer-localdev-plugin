@@ -8,6 +8,7 @@ use Composer\Installer\InstallerInterface;
 use Composer\Package\PackageInterface;
 use Composer\Repository\InstalledRepositoryInterface;
 use Composer\Util\Filesystem;
+use React\Promise\PromiseInterface;
 
 class LocalInstaller implements InstallerInterface {
 
@@ -153,7 +154,7 @@ class LocalInstaller implements InstallerInterface {
 		return $repo->hasPackage($package);
 	}
 
-	public function supports($packageType) {
+	public function supports(string $packageType) {
 		return true;
 	}
 
@@ -169,4 +170,19 @@ class LocalInstaller implements InstallerInterface {
 	public function getInstallPath(PackageInterface $package) {
 		return $this->getDedicatedInstaller($package)->getInstallPath($package);
 	}
+
+    public function download(PackageInterface $package, PackageInterface $prevPackage = null)
+    {
+        // TODO: Implement download() method.
+    }
+
+    public function prepare(string $type, PackageInterface $package, PackageInterface $prevPackage = null)
+    {
+        // TODO: Implement prepare() method.
+    }
+
+    public function cleanup(string $type, PackageInterface $package, PackageInterface $prevPackage = null)
+    {
+        // TODO: Implement cleanup() method.
+    }
 }
